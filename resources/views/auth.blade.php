@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Register | Lunas Agro</title>
+    <title>Login | Lunas Agro</title>
 
     <meta name="description" content="" />
 
@@ -65,26 +65,13 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Registrasi User</h4>
+                        <h4 class="mb-2">Login User</h4>
 
                         <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Enter your username" autofocus />
-                            </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email"
                                     placeholder="Enter your email" />
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Keanggotaan</label>
-                                <select class="form-select" name="role" id="role" required>
-                                    <option selected="">Pilih Keanggotaan</option>
-                                    <option value="1">Koordinator Lapangan</option>
-                                    <option value="2">Tim Ahli</option>
-                                </select>
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>
@@ -98,11 +85,9 @@
 
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="terms-conditions"
-                                        name="terms" />
-                                    <label class="form-check-label" for="terms-conditions">
-                                        I agree to
-                                        <a href="javascript:void(0);">privacy policy & terms</a>
+                                    <input class="form-check-input" type="checkbox" id="rememberme" name="terms" />
+                                    <label class="form-check-label" for="rememberme">
+                                        Remember me
                                     </label>
                                 </div>
                             </div>
@@ -110,9 +95,9 @@
                         </form>
 
                         <p class="text-center">
-                            <span>Already have an account?</span>
-                            <a href="user/auth">
-                                <span>Sign in instead</span>
+                            <span>New on our platform?</span>
+                            <a href="/register">
+                                <span>Create an account</span>
                             </a>
                         </p>
                     </div>

@@ -24,6 +24,9 @@ Route::get('/dashboard', function () {
 Route::get('/register', function () {
     return view('register');
 });
+Route::get('user/auth', function () {
+    return view('auth');
+});
 
 //Tempat PElayanan
 
