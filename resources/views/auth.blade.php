@@ -67,7 +67,8 @@
                         <!-- /Logo -->
                         <h4 class="mb-2">Login User</h4>
 
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                        <form id="formAuthentication" class="mb-3" action="/user/postlogin" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email"
@@ -91,7 +92,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <button class="btn btn-primary d-grid w-100">Sign up</button>
+                            <button class="btn btn-primary d-grid w-100">Sign in</button>
                         </form>
 
                         <p class="text-center">

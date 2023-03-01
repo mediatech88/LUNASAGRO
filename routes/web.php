@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KorlapController;
 use App\Http\Controllers\PelayananController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use App\Http\Controllers\PelayananController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/user/auth',[AuthController::class,'login'])->name('login');
+Route::post('/user/postlogin',[AuthController::class,'postlogin']);
+Route::get('/user/logout',[AuthController::class,'logout']);
+
+Route::middleware('auth')->group(function () {
+
 
 Route::get('/', function () {
     return view('dashboard');
@@ -24,9 +31,11 @@ Route::get('/dashboard', function () {
 Route::get('/register', function () {
     return view('register');
 });
-Route::get('user/auth', function () {
-    return view('auth');
-});
+
+
+// Route::get('/user/auth', function () {
+//     return view('auth');
+// });
 
 //Tempat PElayanan
 
@@ -67,3 +76,5 @@ Route::get('/riwayat-lahan', function () {
 });
 
 
+
+});
