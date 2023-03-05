@@ -23,9 +23,7 @@ Route::get('/register', function () {
 
 
 Route::middleware(['auth', 'cek.roles:1'])->group(function () {
-    Route::get('/tempat-pelayanan', function () {
-        return view('page.admin.tempatpelayanan');
-    });
+    Route::get('/tempat-pelayanan', [PelayananController::class,'index']);
     Route::get('/tempat-pelayanan/create',[PelayananController::class,'create']);
 
 
