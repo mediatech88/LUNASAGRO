@@ -68,8 +68,17 @@
                 </div>
 
                 <div class="menu-inner-shadow"></div>
-
-                @include('layouts.admin_sidebar')
+                @if (auth()->user()->role === 1)
+                    @include('layouts.admin_sidebar')
+                @elseif (auth()->user()->role === 2)
+                    @include('layouts.admin_sidebar')
+                @elseif (auth()->user()->role === 3)
+                    <small class="text-muted">Korlap</small>
+                @elseif (auth()->user()->role === 4)
+                    @include('layouts.timahli_sidebar')
+                @elseif (auth()->user()->role === 5)
+                    <small class="text-muted">Mitra Tani</small>
+                @endif
             </aside>
             <!-- / Menu -->
 
@@ -126,7 +135,18 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
-                                                    <small class="text-muted">Admin</small>
+
+                                                    @if (auth()->user()->role === 1)
+                                                        <small class="text-muted">Admin</small>
+                                                    @elseif (auth()->user()->role === 2)
+                                                        <small class="text-muted">Pelayanan</small>
+                                                    @elseif (auth()->user()->role === 3)
+                                                        <small class="text-muted">Korlap</small>
+                                                    @elseif (auth()->user()->role === 4)
+                                                        <small class="text-muted">Tim Ahli</small>
+                                                    @elseif (auth()->user()->role === 5)
+                                                        <small class="text-muted">Mitra Tani</small>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </a>

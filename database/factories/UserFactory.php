@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'name' => 'januar',
             'email' => 'januar@gmail.com',
             'phone' => '082116162688',
-            'role' => '1',
+            'role' => 1,
             'email_verified_at' => now(),
             'password' => bcrypt('123456'), // password
             'remember_token' => Str::random(10),

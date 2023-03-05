@@ -66,13 +66,23 @@
                         </div>
                         <!-- /Logo -->
                         <h4 class="mb-2">Login User</h4>
-
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
                         <form id="formAuthentication" class="mb-3" action="/user/postlogin" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email" />
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                    id="email" name="email" placeholder="Enter your email" autofocus
+                                    value="{{ old('email') }}" required />
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>
@@ -86,7 +96,8 @@
 
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rememberme" name="terms" />
+                                    <input class="form-check-input" type="checkbox" id="rememberme" name="rememberme"
+                                        value="rememberme" />
                                     <label class="form-check-label" for="rememberme">
                                         Remember me
                                     </label>
