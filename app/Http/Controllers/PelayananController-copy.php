@@ -121,7 +121,7 @@ class PelayananController extends Controller
             'alamat'=>$alamat ]);
         }
 
-    public function update(PostRequest $request, $id){
+    public function update(PostRequest $request, User $user){
         $users= User::where('id',$id)->first();
         $alamat= Alamat::where('id_user',$id)->first();
         $users->update([
