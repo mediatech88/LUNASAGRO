@@ -1,16 +1,9 @@
-{{-- @foreach ($alamat as $item)
-    {{ dd($item['id']) }}
-@endforeach --}}
+{{-- {{ dd($user) }} --}}
+
 @extends('layouts.master')
-@section('title', 'Tambah Tempat Pelayanan')
+@section('title', 'Edit Tempat Pelayanan')
 @section('content')
-    {{-- <div class="card text-center mb-3">
-        <div class="card-body">
 
-        </div>
-    </div> --}}
-
-    {{-- {{ dd($data['alamat']) }} --}}
     <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Data User / Tempat Pelayanan /</span> Create</h4>
 
     <div class="row">
@@ -30,17 +23,17 @@
                     <h5 class="mb-0">Tambah Data Tempat Pelayanan</h5>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/tempat-pelayanan/create">
-                        @csrf
+                    <form method="POST" action="/tempat-pelayanan/{{ $user->id_user }}">
+                        @csrf @method('PATCH')
                         <div class="mb-3">
                             <label class="form-label" for="id">ID</label>
                             <div class="input-group input-group-merge">
                                 <input name="reff" id="reff" type="text" class="form-control" required
-                                    id="basic-icon-default-fullname" readonly value="{{ $reff->id }}">
+                                    id="basic-icon-default-fullname" readonly value="{{ $user->reff }}">
                             </div>
                             <div class="input-group input-group-merge">
                                 <input name="id" id="id" type="text" class="form-control" required
-                                    id="basic-icon-default-fullname" value="{{ $id_tp }}">
+                                    id="basic-icon-default-fullname" value="{{ $user->id }}">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -49,7 +42,7 @@
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="bx bx-user"></i></span>
                                 <input name="name" id="name" type="text" class="form-control" required
-                                    id="basic-icon-default-fullname" placeholder="Nama lengkap" value="{{ old('name') }}">
+                                    id="basic-icon-default-fullname" placeholder="Nama lengkap" value="{{ $user->name }}">
                             </div>
                         </div>
 
@@ -58,7 +51,7 @@
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                 <input type="email" name="email" id="email" class="form-control"
-                                    placeholder="Alamat Email" aria-label="john.doe" required value="{{ old('email') }}">
+                                    placeholder="Alamat Email" aria-label="john.doe" required value="{{ $user->email }}">
                                 <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
                             </div>
                         </div>
@@ -69,7 +62,7 @@
                                         class="bx bx-phone"></i></span>
                                 <input name="phone" id="phone" type="tel" id="basic-icon-default-phone"
                                     class="form-control phone-mask" placeholder="628XXXXXXXX" required
-                                    value="{{ old('phone') }}">
+                                    value="{{ $user->phone }}">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -77,6 +70,7 @@
                             <select class="form-select" name="provinsi" id="provinsi" required>
                                 <option value="">Pilih Provinsi</option>
                                 @foreach ($alamat as $data)
+                                    <a href="">{{ $user->name }}</a>
                                     <option value="{{ $data['id'] }}">{{ $data['name'] }}</option>
                                 @endforeach
                             </select>
@@ -108,7 +102,7 @@
                                     rows="3"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
             </div>

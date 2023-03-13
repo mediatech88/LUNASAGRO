@@ -1,19 +1,22 @@
+{{-- {{ dd($users) }} --}}
+
 @extends('layouts.master')
 @section('title', 'Tempat Pelayanan')
 @section('content')
-    {{-- <div class="card text-center mb-3">
-        <div class="card-body">
-
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
         </div>
-    </div> --}}
+    @endif
     <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Data User /</span> Tempat Pelayanan</h4>
 
     <div class="row">
         <div class="col-md-12">
             <div class="demo-inline-spacing mb-3">
                 <a href="{{ url()->current() . '/create' }}" class="btn btn rounded-pill btn-success"
-                    role="button"data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
-                    title="" data-bs-original-title="Tambah Data"><span class="tf-icons bx bx bx-plus"></span>Tambah
+                    role="button"data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                    data-bs-html="true" title="" data-bs-original-title="Tambah Data"><span
+                        class="tf-icons bx bx bx-plus"></span>Tambah
                     Data</a>
                 <button type="button" class="btn rounded-pill btn-outline-warning" data-bs-toggle="tooltip"
                     data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" title=""
@@ -49,16 +52,18 @@
                                             25
                                         </td>
                                         <td>
-                                            <button type="button" class="btn rounded-pill btn-icon btn-danger"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                                data-bs-html="true" title="" data-bs-original-title="Hapus Data">
-                                                <span class="tf-icons bx bx bx-trash"></span>
-                                            </button>
-                                            <button type="button" class="btn rounded-pill btn-icon btn-primary"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                                data-bs-html="true" title="" data-bs-original-title="Edit Data">
-                                                <span class="tf-icons bx bx bx-edit"></span>
-                                            </button>
+                                            <form action="/tempat-pelayanan" method="post">
+                                                <button type="button" class="btn rounded-pill btn-icon btn-danger"
+                                                    data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                                                    data-bs-html="true" title="" data-bs-original-title="Hapus Data">
+                                                    <span class="tf-icons bx bx bx-trash"></span>
+                                                </button>
+                                                <a href="{{ url()->current() . '/' . $data->id_user . '/edit' }}"
+                                                    role="button" class="btn rounded-pill btn-icon btn-primary"
+                                                    data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                                                    data-bs-html="true" title="" data-bs-original-title="Edit Data">
+                                                    <span class="tf-icons bx bx bx-edit"></span>
+                                                </a>
                                         </td>
 
                                     </tr>

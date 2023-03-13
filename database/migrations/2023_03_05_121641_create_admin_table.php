@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlamat extends Migration
+class CreateAdminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateAlamat extends Migration
      */
     public function up()
     {
-        Schema::create('alamat', function (Blueprint $table) {
-            $table->id('id_alamat');
+        Schema::create('admin', function (Blueprint $table) {
+            $table->string('id');
             $table->foreignId('id_user')->constrained('users');
-            $table->integer('provinsi')->nullable();
-            $table->integer('kota_kab')->nullable();
-            $table->bigInteger('kecamatan')->nullable();
-            $table->bigInteger('desa')->nullable();
-            $table->text('alamat_lain')->nullable();
+            $table->string('reff')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateAlamat extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alamat');
+        Schema::dropIfExists('admin');
     }
 }

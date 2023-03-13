@@ -22,11 +22,17 @@ Route::get('/register', function () {
 });
 
 
-Route::middleware(['auth', 'cek.roles:1'])->group(function () {
+Route::middleware(['auth', 'cek.roles:1,2'])->group(function () {
+
+    //Pelayanan
     Route::get('/tempat-pelayanan', [PelayananController::class,'index']);
     Route::get('/tempat-pelayanan/create',[PelayananController::class,'create']);
+    Route::post('/tempat-pelayanan/create',[PelayananController::class,'store']);
+    Route::get('/tempat-pelayanan/{id}/edit',[PelayananController::class,'edit']);
+    Route::patch('/tempat-pelayanan/{id_user}',[PelayananController::class,'update']);
 
-
+    //Korlap
+    Route::get('/koordinator-lapangan/create',[KorlapController::class,'create']);
 
     //Tim Ahli
     Route::get('/tim-ahli', function () {
@@ -59,20 +65,8 @@ Route::middleware(['auth', 'cek.roles:1'])->group(function () {
     });
 
 
-});
-Route::middleware(['auth', 'cek.roles:1,2'])->group(function () {
- //Korlap
-    Route::get('/koordinator-lapangan/create',[KorlapController::class,'create']);
-});
-Route::middleware(['auth', 'cek.roles:1,3'])->group(function () {
-    Route::get('/koordinator-lapangan', function () {
-        return view('page.admin.koordinatorlapangan');
-    });
-});
-Route::middleware(['auth', 'cek.roles:1,2,3,4'])->group(function () {
 
-});
-Route::middleware(['auth', 'cek.roles:1,2,3,4,5'])->group(function () {
+
     Route::get('/', function () {
         return view('dashboard');
     });
@@ -80,8 +74,29 @@ Route::middleware(['auth', 'cek.roles:1,2,3,4,5'])->group(function () {
         return view('dashboard');
     });
     Route::get('/user/logout',[AuthController::class,'logout']);
-
 });
+// Route::middleware(['auth', 'cek.roles:1,2'])->group(function () {
+//  //Korlap
+//     Route::get('/koordinator-lapangan/create',[KorlapController::class,'create']);
+// });
+// Route::middleware(['auth', 'cek.roles:1,3'])->group(function () {
+//     Route::get('/koordinator-lapangan', function () {
+//         return view('page.admin.koordinatorlapangan');
+//     });
+// });
+// Route::middleware(['auth', 'cek.roles:1,2,3,4'])->group(function () {
+
+// });
+// Route::middleware(['auth', 'cek.roles:1,2,3,4,5'])->group(function () {
+//     Route::get('/', function () {
+//         return view('dashboard');
+//     });
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     });
+//     Route::get('/user/logout',[AuthController::class,'logout']);
+
+// });
 
 
 
