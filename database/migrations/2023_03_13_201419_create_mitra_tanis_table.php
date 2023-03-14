@@ -36,6 +36,6 @@ class CreateMitraTanisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mitra_tanis');
+        Schema::dropIfExists('mitra_tani');
     }
 }
