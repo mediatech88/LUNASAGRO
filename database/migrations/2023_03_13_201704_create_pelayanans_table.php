@@ -31,6 +31,6 @@ class CreatePelayanansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelayanans');
+        Schema::dropIfExists('pelayanan');
     }
 }
