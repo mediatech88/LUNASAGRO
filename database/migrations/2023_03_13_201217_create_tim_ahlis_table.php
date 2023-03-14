@@ -32,6 +32,6 @@ class CreateTimAhlisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tim_ahlis');
+        Schema::dropIfExists('tim_ahli');
     }
 }

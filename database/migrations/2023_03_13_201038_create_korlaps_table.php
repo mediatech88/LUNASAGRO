@@ -32,6 +32,6 @@ class CreateKorlapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('korlaps');
+        Schema::dropIfExists('korlap');
     }
 }
