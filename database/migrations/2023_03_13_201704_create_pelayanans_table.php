@@ -15,12 +15,13 @@ class CreatePelayanansTable extends Migration
     {
         Schema::create('pelayanan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->bigInteger('provinsi');
             $table->bigInteger('kota');
             $table->bigInteger('kecamatan');
             $table->bigInteger('desa');
-            $table->string('code')->unique();
+            $table->string('code');
+            $table->timestamps();
         });
     }
 

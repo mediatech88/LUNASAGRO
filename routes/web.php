@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KorlapController;
 use App\Http\Controllers\PelayananController;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +43,11 @@ Route::get('/tempat-pelayanan', function () {
     return view('page.admin.tempatpelayanan');
 });
 
+Route::get('/tempat-pelayanan',[PelayananController::class,'index']);
 Route::get('/tempat-pelayanan/create',[PelayananController::class,'create']);
+Route::post('/tempat-pelayanan',[PelayananController::class,'store']);
+Route::delete('/tempat-pelayanan/{id}',[PelayananController::class,'destroy']);
+Route::get('/tempat-pelayanan/{id}/edit',[PelayananController::class,'edit']);
 
 
 //Korlap

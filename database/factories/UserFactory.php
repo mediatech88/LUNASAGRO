@@ -16,14 +16,14 @@ class UserFactory extends Factory
     {
         return [
 
-            'name' => 'januar',
-            'email' => 'januar@gmail.com',
-            'phone' => '082116162688',
-            'role' => '1',
-            'email_verified_at' => now(),
-            'password' => bcrypt('123456'), // password
-            'remember_token' => Str::random(10),
-            'reff' => 'ADM001',
+            // 'name' => 'januar',
+            // 'email' => 'januar@gmail.com',
+            // 'phone' => '082116162688',
+            // 'role' => '1',
+            // 'email_verified_at' => now(),
+            // 'password' => bcrypt('123456'), // password
+            // 'remember_token' => Str::random(10),
+            // 'reff' => 'ADM001',
             // 'name' => $this->faker->name(),
             // 'email' => $this->faker->unique()->safeEmail(),
             // 'email_verified_at' => now(),

@@ -10,28 +10,65 @@
 
     <div class="row">
         <div class="col-md-8">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Tambah Data Tempat Pelayanan</h5>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="POST" action="/tempat-pelayanan">
+                        @csrf
                         <div class="mb-3">
-                            <label class="form-label" for="nama">Nama Tempat Pelayanan</label>
+                            <label class="form-label" for="id">Refferal</label>
+                            <div class="input-group input-group-merge">
+                                <input name="reff" id="reff" type="text"
+                                    class="form-control
+                                    required id="basic-icon-default-fullname"
+                                    readonly value="{{ $reff->reff }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="id">ID</label>
+                                <div class="input-group input-group-merge">
+                                    <input name="code" id="code" type="text"
+                                        class="form-control @error('code')
+                                    is-invalid
+                                @enderror""
+                                        required id="basic-icon-default-fullname" value="{{ $id_tp }}">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Nama Tempat Pelayanan</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="bx bx-user"></i></span>
-                                <input name="nama" id="nama" type="text" class="form-control" required
-                                    id="basic-icon-default-fullname" placeholder="Nama lengkap" aria-label="John Doe">
+                                <input name="name" id="name" type="text"
+                                    class="form-control @error('name')
+                                is-invalid
+                            @enderror"
+                                    required id="basic-icon-default-fullname" placeholder="Nama lengkap"
+                                    value="{{ old('name') }}">
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-email">Email</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                <input type="email" name="email" id="email" class="form-control"
-                                    placeholder="Alamat Email" aria-label="john.doe" required>
-                                <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                                <input type="email" name="email" id="email"
+                                    class="form-control @error('email')
+                                    is-invalid
+                                @enderror"
+                                    placeholder="Alamat Email" aria-label="john.doe" required value="{{ old('email') }}">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -40,37 +77,50 @@
                                 <span id="basic-icon-default-phone2" class="input-group-text"><i
                                         class="bx bx-phone"></i></span>
                                 <input name="phone" id="phone" type="tel" id="basic-icon-default-phone"
-                                    class="form-control phone-mask" placeholder="628XXXXXXXX" required>
+                                    class="form-control @error('phone')
+                                    is-invalid
+                                @enderror
+                                    phone-mask"
+                                    placeholder="628XXXXXXXX" required value="{{ old('phone') }}">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Provinsi</label>
                             <select class="form-select" name="provinsi" id="provinsi" required>
-                                <option selected="NULL">Pilih Provinsi</option>
-                                @foreach ($data as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                <option value="">Pilih Provinsi</option>
+                                @foreach ($alamat as $data)
+                                    <option value="{{ $data['id'] }}">{{ $data['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Kota/Kab</label>
                             <select class="form-select" name="kota" id="kota" required>
-                                <option selected="">Pilih Kota / Kab</option>
+                                <option value="">Pilih Kota / Kab</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Kecamatan</label>
-                            <select class="form-select" name="kec" id="kec" aria-label="Default select example">
-                                <option selected="">Pilih Kecamatan</option>
+                            <select class="form-select" name="kec" id="kec" aria-label="Default select example"
+                                required>
+                                <option value="">Pilih Kecamatan</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Desa/Kelurahan</label>
-                            <select class="form-select" name="desa" id="desa" aria-label="Default select example">
-                                <option selected="">Pilih Desa / Kelurahan</option>
+                            <select class="form-select" name="desa" id="desa" aria-label="Default select example"
+                                required>
+                                <option value="">Pilih Desa / Kelurahan</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        {{-- <div class="mb-3">
+                            <label class="form-label" for="alamat_lain">Detail Alamat</label>
+                            <div class="input-group input-group-merge">
+                                <textarea name="alamat_lain" id="alamat_lain" type="text" class="form-control" id="basic-icon-default-fullname"
+                                    rows="3"></textarea>
+                            </div>
+                        </div> --}}
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
             </div>

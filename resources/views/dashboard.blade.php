@@ -1,7 +1,19 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
 @section('content')
-
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div>
+                        <li class="text-danger">
+                            Under Maintenance, Please Be Patient
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 {{-- <div class="row">
     <div class="col-lg-8 mb-4 order-0">
