@@ -78,6 +78,9 @@ Route::get('/penyakit-tanaman', function () {
 Route::get('/riwayat-lahan', function () {
     return view('page.admin.riwayatlahan');
 });
+Route::get('/peta-lahan', function () {
+    return view('page.admin.petalahan');
+});
 
 
 

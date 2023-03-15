@@ -52,6 +52,12 @@
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Data Lain</span>
     </li>
+    <li class="menu-item {{ request()->is('peta-lahan') ? 'active' : '' }}">
+        <a href="{{ url('/peta-lahan') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-current-location"></i>
+            <div data-i18n="Connections">Peta Lahan</div>
+        </a>
+    </li>
     <li class="menu-item {{ request()->is('tanaman') ? 'active' : '' }}">
         <a href="{{ url('/tanaman') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bxs-leaf"></i>
@@ -64,6 +70,7 @@
             <div data-i18n="Connections">Pemupukan</div>
         </a>
     </li>
+
 </ul>
 {{-- <ul class="menu-inner py-1">
     <!-- Dashboard -->
