@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'), // password
             'remember_token' => Str::random(10),
-            'reff' => 'ADM001'
+            'reff' => 'ADM000'
         ]);
 
         Pelayanan::create([
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'kota'=>3551,
             'kecamatan'=>3551,
             'desa'=>3551,
-            'code'=>'TP001'
+            'code'=>'ADM001'
 
         ]);
     }

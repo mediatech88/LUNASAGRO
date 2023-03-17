@@ -2,8 +2,13 @@
 @section('title', 'Tempat Pelayanan')
 @section('content')
     @if (session('status'))
-        <div class="alert {{ session('alert') }} }}" role="alert">
-            {{ session('pesan') }}
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
+    @if (session('gagal'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('gagal') }}
         </div>
     @endif
     {{-- <div class="card text-center mb-3">
@@ -76,18 +81,20 @@
                                                 data-bs-html="true" title="" data-bs-original-title="Edit Data">
                                                 <span class="tf-icons bx bx bx-edit"></span>
                                             </button>
-                                            @if (auth()->user()->id !== $data->id || auth()->user()->id !== 1)
-                                                <form action="/tempat-pelayanan/{{ $data->id }}" method="post"
-                                                    class="d-inline">
-                                                    @method('delete') @csrf
-                                                    <button type="submit" class="btn rounded-pill btn-icon btn-danger"
-                                                        data-toggle="modal" data-target="#GSCCModal"
-                                                        data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                        data-bs-placement="bottom" data-bs-html="true" title=""
-                                                        data-bs-original-title="Hapus Data">
-                                                        <span class="tf-icons bx bx bx-trash"></span>
-                                                    </button>
-                                                </form>
+                                            @if ($data->code !== 'ADM001')
+                                                @if (auth()->user()->id !== $data->id)
+                                                    <form action="/tempat-pelayanan/{{ $data->id }}" method="post"
+                                                        class="d-inline">
+                                                        @method('delete') @csrf
+                                                        <button type="submit" class="btn rounded-pill btn-icon btn-danger"
+                                                            data-toggle="modal" data-target="#GSCCModal"
+                                                            data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                            data-bs-placement="bottom" data-bs-html="true" title=""
+                                                            data-bs-original-title="Hapus Data">
+                                                            <span class="tf-icons bx bx bx-trash"></span>
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             @endif
 
 

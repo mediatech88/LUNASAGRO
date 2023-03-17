@@ -19,6 +19,14 @@ class PelayananController extends Controller
      */
     public function index()
     {
+        // $prov= 34;
+        // $kota= 3471;
+        // $response = Http::get('https://mediatech88.github.io/api-wilayah-indonesia/api/regencies/'.$prov.'.json');
+        // $data = $response->json();
+        // foreach ($data as $key) {
+        //     return $key;
+        // }
+
         $users=DB::table('users')
         ->join('pelayanan','users.id','=','pelayanan.user_id')
         ->select()
@@ -34,32 +42,18 @@ class PelayananController extends Controller
     public function create()
     {
         $response = Http::get('https://mediatech88.github.io/api-wilayah-indonesia/api/provinces.json');
-        $data = $response->json();
+        $alamat = $response->json();
+
+
 
         $jml_tp=Pelayanan::count('id')+1;
 
 
 
         $role=auth()->user()->role;
-        $reff=auth()->user()->reff;
-
-        $reff= User::where('reff',$reff)->first();
-
-        // if ($role==1){
-        //     $reff=DB::table('users')
-        //     ->where('reff','=',$id)
-        //     ->first();
-        // }
-        // if ($role==2){
-        //     $reff=DB::table('pelayanan')
-        //     ->where('user_id','=',$id)
-        //     ->first();
-        // }
-
-        // return view('page.add_pelayanan', ['data' => $data]);
+        $id= auth()->user()->id;
+        $reff=Pelayanan::where('id',$id)->first()->code;
         $id_tp ='TP'.str_pad($jml_tp, 3, '0', STR_PAD_LEFT);
-
-        $alamat=$data;
 
         return view('page.add_pelayanan', [
             'id_tp' => $id_tp,
@@ -107,8 +101,6 @@ class PelayananController extends Controller
                 'code'=> $request->code
             ]);
         }
-        // $id_tp = Auth::user()->role;
-        // return dd($id_tp)
 
         return redirect('tempat-pelayanan')->with(
             'status',
@@ -162,20 +154,26 @@ class PelayananController extends Controller
         // return redirect('tempat-pelayanan')
         //     ->with('status','Data Berhasil di Hapus');
         $id_login = Auth::user()->id;
+
+        // @if ($data->code !== 'ADM001')
+        //                                         @if (auth()->user()->id !== $data->id)
         // $id_admin = 1;
-        if($id == $id_login ){
-            return redirect('tempat-pelayanan')
-                ->with(
-                    'status',
-                    'Jangan Hapus Boss'
-                );
-        }else{
-            User::destroy($id);
+        if($id !== $id_login ){
+            if(Auth::user()->role!==1){
+                User::destroy($id);
             return redirect('tempat-pelayanan')
                 ->with(
                     'gagal',
                     'Data Berhasil di Hapus'
                 );
+            }
+
+        }else{
+            return redirect('tempat-pelayanan')
+            ->with(
+                'status',
+                'Jangan Hapus Boss'
+            );
         }
 
 

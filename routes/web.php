@@ -15,7 +15,7 @@ use App\Http\Controllers\PelayananController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/user/auth',[AuthController::class,'login'])->name('login');
+Route::get('/user/auth',[AuthController::class,'login'])->name('login')->middleware('guest');
 Route::post('/user/postlogin',[AuthController::class,'postlogin']);
 Route::get('/user/logout',[AuthController::class,'logout']);
 
@@ -56,6 +56,7 @@ Route::get('/koordinator-lapangan', function () {
     return view('page.admin.koordinatorlapangan');
 });
 Route::get('/koordinator-lapangan/create',[KorlapController::class,'create']);
+Route::post('/koordinator-lapangan',[KorlapController::class,'store']);
 
 
 //Tim Ahli

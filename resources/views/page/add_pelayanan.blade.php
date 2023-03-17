@@ -32,7 +32,7 @@
                                 <input name="reff" id="reff" type="text"
                                     class="form-control
                                     required id="basic-icon-default-fullname"
-                                    readonly value="{{ $reff->reff }}">
+                                    readonly value="{{ $reff }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="id">ID</label>

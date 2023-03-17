@@ -10,4 +10,14 @@ class Korlap extends Model
     use HasFactory;
 
     protected $table = 'korlap';
+
+    protected $fillable = [
+        'user_id',
+        'admin_id',
+        'provinsi',
+        'kota',
+        'kecamatan',
+        'desa',
+        'code',
+    ];
 }
