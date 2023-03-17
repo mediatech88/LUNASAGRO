@@ -17,8 +17,9 @@
                                     <li>
                                         Tambah Pelayanan
                                         <p>
-                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, jika ada error silahkan
-                                            menghubungi developer
+                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, setelah berhasil di
+                                            tambahkan, silahkan untuk mencoba login menggunakan email yang telah kamu
+                                            tambahkan untuk passwordnya ter setdefault (123456)
                                         </p>
                                     </li>
                                     <li>
@@ -32,8 +33,9 @@
                                     <li>
                                         Tambah Korlap
                                         <p>
-                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, jika ada error silahkan
-                                            menghubungi developer
+                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, setelah berhasil di
+                                            tambahkan, silahkan untuk mencoba login menggunakan email yang telah kamu
+                                            tambahkan untuk passwordnya ter setdefault (123456)
                                         </p>
                                     </li>
                                     <li>
