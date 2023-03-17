@@ -6,9 +6,43 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div>
-                        <li class="text-danger">
-                            Under Maintenance, Please Be Patient
-                        </li>
+                        <h3>
+                            Website Under Maintenance, Please be Patient
+                        </h3>
+                        MENU YANG BISA DI COBA
+                        <ul>
+                            <li>
+                                Menu Pelayanan
+                                <ul>
+                                    <li>
+                                        Tambah Pelayanan
+                                        <p>
+                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, jika ada error silahkan
+                                            menghubungi developer
+                                        </p>
+                                    </li>
+                                    <li>
+                                        Hapus Pelayanan
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Menu Korlap
+                                <ul>
+                                    <li>
+                                        Tambah Korlap
+                                        <p>
+                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, jika ada error silahkan
+                                            menghubungi developer
+                                        </p>
+                                    </li>
+                                    <li>
+                                        Hapus Pelayanan
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
