@@ -52,11 +52,10 @@ Route::get('/tempat-pelayanan/{id}/edit',[PelayananController::class,'edit']);
 
 //Korlap
 
-Route::get('/koordinator-lapangan', function () {
-    return view('page.admin.koordinatorlapangan');
-});
+Route::get('/koordinator-lapangan',[KorlapController::class,'index']);
 Route::get('/koordinator-lapangan/create',[KorlapController::class,'create']);
 Route::post('/koordinator-lapangan',[KorlapController::class,'store']);
+Route::delete('/koordinator-lapangan/{id}',[KorlapController::class,'destroy']);
 
 
 //Tim Ahli

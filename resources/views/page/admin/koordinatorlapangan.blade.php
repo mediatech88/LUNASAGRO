@@ -1,19 +1,27 @@
+{{-- {{ dd($users) }} --}}
+
 @extends('layouts.master')
 @section('title', 'Koordinator Lapangan')
 @section('content')
-    {{-- <div class="card text-center mb-3">
-        <div class="card-body">
-
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
         </div>
-    </div> --}}
+    @endif
+    @if (session('gagal'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('gagal') }}
+        </div>
+    @endif
     <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Data User /</span> Koordinator Lapangan</h4>
 
     <div class="row">
         <div class="col-md-12">
             <div class="demo-inline-spacing mb-3">
                 <a href="{{ url()->current() . '/create' }}" class="btn btn rounded-pill btn-success"
-                    role="button"data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
-                    title="" data-bs-original-title="Tambah Data"><span class="tf-icons bx bx bx-plus"></span>Tambah
+                    role="button"data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                    data-bs-html="true" title="" data-bs-original-title="Tambah Data"><span
+                        class="tf-icons bx bx bx-plus"></span>Tambah
                     Data</a>
                 {{-- <button type="button" class="btn rounded-pill btn-success" data-bs-toggle="tooltip" data-bs-offset="0,4"
                     data-bs-placement="bottom" data-bs-html="true" title="" data-bs-original-title="Tambah Data"><span
@@ -40,27 +48,37 @@
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <td>1</td>
-                                    <td>KL01TP009</td>
-                                    <td>Januar</td>
-                                    <td>januar@gmail.com</td>
-                                    <td>082116162688</td>
-                                    <td>Sidoarjo - Jawa Timur</td>
-                                    <td>MT01</td>
-                                    <td>
-                                        <button type="button" class="btn rounded-pill btn-icon btn-danger"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                            data-bs-html="true" title="" data-bs-original-title="Hapus Data">
-                                            <span class="tf-icons bx bx bx-trash"></span>
-                                        </button>
-                                        <button type="button" class="btn rounded-pill btn-icon btn-primary"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                            data-bs-html="true" title="" data-bs-original-title="Edit Data">
-                                            <span class="tf-icons bx bx bx-edit"></span>
-                                        </button>
-                                    </td>
-                                </tr>
+                                @php
+                                    $numb = 1;
+                                @endphp
+                                @foreach ($users as $data)
+                                    <tr>
+                                        <td>{{ $numb++ }}</td>
+                                        <td>{{ $data->code }}</td>
+                                        <td>{{ $data->name }}</td>
+                                        <td>{{ $data->email }}</td>
+                                        <td>{{ $data->phone }}</td>
+                                        <td>{{ $data->desa }} {{ $data->kecamatan }} {{ $data->kota }}</td>
+                                        <td>MT01</td>
+                                        <td>
+                                            <button type="button" class="btn rounded-pill btn-icon btn-primary"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                                                data-bs-html="true" title="" data-bs-original-title="Edit Data">
+                                                <span class="tf-icons bx bx bx-edit"></span>
+                                            </button>
+                                            <form action="/koordinator-lapangan/{{ $data->user_id }}" method="post"
+                                                class="d-inline">
+                                                @method('delete') @csrf
+                                                <button type="submit" class="btn rounded-pill btn-icon btn-danger"
+                                                    data-toggle="modal" data-target="#GSCCModal" data-bs-toggle="tooltip"
+                                                    data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
+                                                    title="" data-bs-original-title="Hapus Data">
+                                                    <span class="tf-icons bx bx bx-trash"></span>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                         </table>
                     </div>
                 </div>

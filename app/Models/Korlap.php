@@ -13,7 +13,7 @@ class Korlap extends Model
 
     protected $fillable = [
         'user_id',
-        'admin_id',
+        'pelayanan_id',
         'provinsi',
         'kota',
         'kecamatan',

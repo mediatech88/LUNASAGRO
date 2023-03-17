@@ -37,6 +37,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="id">ID</label>
                                 <div class="input-group input-group-merge">
+                                    <button type="button" disabled class="btn btn-primary">TP</button>
                                     <input name="code" id="code" type="text"
                                         class="form-control @error('code')
                                     is-invalid

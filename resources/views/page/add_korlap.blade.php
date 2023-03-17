@@ -1,5 +1,3 @@
-{{ dd($admin_id) }}
-
 @extends('layouts.master')
 @section('title', 'Tambah Koordinator Lapangan')
 @section('content')
@@ -14,11 +12,9 @@
         <div class="col-md-8">
             @if ($errors->any())
                 <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
                 </div>
             @endif
             <div class="card mb-4">
@@ -37,38 +33,33 @@
                                     readonly value="{{ $reff }}">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="id">ID</label>
+                                <label class="form-label" for="code">ID</label>
                                 <div class="input-group input-group-merge">
                                     <input name="code" id="code" type="text"
                                         class="form-control @error('code')
                                     is-invalid
-                                @enderror""
-                                        required id="basic-icon-default-fullname" value="{{ $korlap_id }}">
+                                @enderror"
+                                        required id="basic-icon-default-fullname" readonly value="{{ $korlap_id }}">
                                 </div>
                             </div>
 
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Tempat Pelayanan</label>
-                            <select class="form-select" name="admin_id" id="admin_id" required>
-                                <option value="">Pilih Pelayanan</option>
-                                @foreach ($admin_id as $data)
-                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-label" for="id">Nama</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-user"></i></span>
+                                <input name="name" id="name" type="text" class="form-control" required
+                                    id="basic-icon-default-fullname" value="{{ old('name') }}">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="name">Nama Tempat Pelayanan</label>
-                            <div class="input-group input-group-merge">
-                                <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                        class="bx bx-user"></i></span>
-                                <input name="name" id="name" type="text"
-                                    class="form-control @error('name')
-                                is-invalid
-                            @enderror"
-                                    required id="basic-icon-default-fullname" placeholder="Nama lengkap"
-                                    value="{{ old('name') }}">
-                            </div>
+                            <select class="form-select" name="pelayanan_id" id="pelayanan_id" required>
+                                <option value="">Pilih Pelayanan</option>
+                                @foreach ($admin_id as $data)
+                                    <option value="{{ $data->code }}">{{ $data->code }} - {{ $data->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -87,7 +78,8 @@
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-phone2" class="input-group-text"><i
                                         class="bx bx-phone"></i></span>
-                                <input name="phone" id="phone" type="tel" id="basic-icon-default-phone"
+                                <input name="phone" minlenght="8" id="phone" type="tel"
+                                    id="basic-icon-default-phone"
                                     class="form-control @error('phone')
                                     is-invalid
                                 @enderror

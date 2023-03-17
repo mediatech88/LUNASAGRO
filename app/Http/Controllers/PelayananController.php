@@ -53,7 +53,7 @@ class PelayananController extends Controller
         $role=auth()->user()->role;
         $id= auth()->user()->id;
         $reff=Pelayanan::where('id',$id)->first()->code;
-        $id_tp ='TP'.str_pad($jml_tp, 3, '0', STR_PAD_LEFT);
+        $id_tp =str_pad($jml_tp, 3, '0', STR_PAD_LEFT);
 
         return view('page.add_pelayanan', [
             'id_tp' => $id_tp,
@@ -73,13 +73,18 @@ class PelayananController extends Controller
         $validatedData = $request->validate([
             'name' => ['required','max:255'],
             'email' => ['required','email:rfc','unique:users'],
-            'phone' => ['required'],
+            'phone' => ['required','min:999999','max:9999999999999','numeric'],
             'reff' => ['required'],
             'provinsi'=> ['required'],
             'kota'=> ['required'],
             'kec'=> ['required'],
             'desa'=> ['required'],
-            'code'=> ['required']
+            'code'=> ['required','unique:pelayanan'],[
+            'phone.min'=> 'Phone Minimal 7 Karakter',
+            'phone.max'=> 'Phone Maksimal 13 Karakter',
+            'phone.numeric'=> 'Phone Harus Berisi Angka',
+            'email.unique'=> 'Email Telah Terdaftar',
+        ]
         ]);
         // return request()->all();
         if ($validatedData==true) {
@@ -98,7 +103,7 @@ class PelayananController extends Controller
                 'kota'=> $request->kota,
                 'kecamatan'=> $request->kec,
                 'desa'=> $request->desa,
-                'code'=> $request->code
+                'code'=> 'TP'.$request->code
             ]);
         }
 
@@ -159,14 +164,12 @@ class PelayananController extends Controller
         //                                         @if (auth()->user()->id !== $data->id)
         // $id_admin = 1;
         if($id !== $id_login ){
-            if(Auth::user()->role!==1){
                 User::destroy($id);
             return redirect('tempat-pelayanan')
                 ->with(
-                    'gagal',
+                    'status',
                     'Data Berhasil di Hapus'
                 );
-            }
 
         }else{
             return redirect('tempat-pelayanan')
