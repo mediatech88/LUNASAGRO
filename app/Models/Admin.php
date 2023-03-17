@@ -11,4 +11,12 @@ class Admin extends Model
 
     protected $table = 'admin';
 
+    protected $fillable = [
+        'user_id',
+        'provinsi',
+        'kota',
+        'kecamatan',
+        'desa',
+        'code',
+    ];
 }

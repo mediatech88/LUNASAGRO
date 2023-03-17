@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Pelayanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,11 +49,16 @@ class PelayananController extends Controller
 
         $jml_tp=Pelayanan::count('id')+1;
 
-
-
         $role=auth()->user()->role;
         $id= auth()->user()->id;
-        $reff=Pelayanan::where('id',$id)->first()->code;
+        //Admin
+        if($role=1){
+            $reff=Admin::where('id',$id)->first()->code;
+        }
+        //Pelayanan
+        if($role=2){
+            $reff=Admin::where('id',$id)->first()->code;
+        }
         $id_tp =str_pad($jml_tp, 3, '0', STR_PAD_LEFT);
 
         return view('page.add_pelayanan', [

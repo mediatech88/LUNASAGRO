@@ -10,12 +10,6 @@
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Data User</span>
     </li>
-    <li class="menu-item {{ request()->is('superuser*') ? 'active' : '' }}">
-        <a href="{{ url('/superuser') }}" class="menu-link ">
-            <i class="menu-icon tf-icons bx bxs-user"></i>
-            <div data-i18n="Account Settings">Data Admin</div>
-        </a>
-    </li>
     <li class="menu-item {{ request()->is('tempat-pelayanan*') ? 'active' : '' }}">
         <a href="{{ url('/tempat-pelayanan') }}" class="menu-link ">
             <i class="menu-icon tf-icons bx bxs-store-alt"></i>

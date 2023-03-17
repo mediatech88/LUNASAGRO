@@ -20,7 +20,7 @@ class CreatePelayanansTable extends Migration
             $table->bigInteger('kota');
             $table->bigInteger('kecamatan');
             $table->bigInteger('desa');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->timestamps();
         });
     }

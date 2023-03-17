@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Pelayanan;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -31,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'reff' => 'ADM000'
         ]);
 
-        Pelayanan::create([
+        Admin::create([
             'user_id'=>1,
             'provinsi'=>35,
             'kota'=>3551,

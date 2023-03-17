@@ -10,24 +10,6 @@
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Data User</span>
     </li>
-    <li class="menu-item {{ request()->is('superuser*') ? 'active' : '' }}">
-        <a href="{{ url('/superuser') }}" class="menu-link ">
-            <i class="menu-icon tf-icons bx bxs-user"></i>
-            <div data-i18n="Account Settings">Data Admin</div>
-        </a>
-    </li>
-    <li class="menu-item {{ request()->is('tempat-pelayanan*') ? 'active' : '' }}">
-        <a href="{{ url('/tempat-pelayanan') }}" class="menu-link ">
-            <i class="menu-icon tf-icons bx bxs-store-alt"></i>
-            <div data-i18n="Account Settings">Tempat Pelayanan</div>
-        </a>
-    </li>
-    <li class="menu-item {{ request()->is('koordinator-lapangan*') ? 'active' : '' }}">
-        <a href="{{ url('/koordinator-lapangan') }}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-directions"></i>
-            <div data-i18n="Account">Koordinator Lapangan</div>
-        </a>
-    </li>
     <li class="menu-item {{ request()->is('tim-ahli') ? 'active' : '' }}">
         <a href="{{ url('/tim-ahli') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-first-aid"></i>

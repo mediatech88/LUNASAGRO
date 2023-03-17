@@ -71,8 +71,17 @@
                  </div>
 
                  <div class="menu-inner-shadow"></div>
-
-                 @include('layouts.admin_sidebar')
+                 @if (auth()->user()->role === 1)
+                     @include('layouts.admin_sidebar')
+                 @elseif (auth()->user()->role === 2)
+                     @include('layouts.pelayanan_sidebar')
+                 @elseif (auth()->user()->role === 3)
+                     @include('layouts.korlap_sidebar')
+                 @elseif (auth()->user()->role === 4)
+                     @include('layouts.timahli_sidebar')
+                 @elseif (auth()->user()->role === 5)
+                     @include('layouts.mitratani_sidebar')
+                 @endif
              </aside>
              <!-- / Menu -->
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KorlapController;
 use App\Http\Controllers\PelayananController;
 
@@ -42,6 +43,7 @@ Route::get('/register', function () {
 Route::get('/tempat-pelayanan', function () {
     return view('page.admin.tempatpelayanan');
 });
+Route::get('/superuser', [AdminController::class,'index']);
 
 Route::get('/tempat-pelayanan',[PelayananController::class,'index']);
 Route::get('/tempat-pelayanan/create',[PelayananController::class,'create']);

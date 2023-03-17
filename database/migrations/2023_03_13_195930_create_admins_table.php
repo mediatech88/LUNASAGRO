@@ -15,12 +15,13 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admin', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->bigInteger('provinsi');
             $table->bigInteger('kota');
             $table->bigInteger('kecamatan');
             $table->bigInteger('desa');
             $table->string('code')->unique();
+            $table->timestamps();
         });
     }
 
