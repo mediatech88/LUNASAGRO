@@ -48,6 +48,8 @@
 <body>
     <!-- Content -->
 
+    <!-- Content -->
+
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner">
@@ -64,69 +66,80 @@
                                 <span class="app-brand-text demo text-body fw-bolder">Lunas Agro</span>
                             </a>
                         </div>
-                        <!-- /Logo -->
-                        <h4 class="mb-2">Login User</h4>
-
-                        <form id="formAuthentication" class="mb-3" action="/user/postlogin" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email" />
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
                             </div>
-                            <div class="mb-3 form-password-toggle">
-                                <label class="form-label" for="password">Password</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control" name="password"
-                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password" />
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                        @endif
+                        <div clas <!-- /Logo -->
+                            <h4 class="mb-2">Login User</h4>
+                            <form class="mb-3" action="/user/postlogin" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" placeholder="Enter your email" autofocus
+                                        value="{{ old('email') }}" required />
+                                    {{-- @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror --}}
                                 </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rememberme" name="terms" />
-                                    <label class="form-check-label" for="rememberme">
-                                        Remember me
-                                    </label>
+                                <div class="mb-3 form-password-toggle">
+                                    <label class="form-label" for="password">Password</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="password" class="form-control" name="password"
+                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                            aria-describedby="password" />
+                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="btn btn-primary d-grid w-100">Sign in</button>
-                        </form>
 
-                        <p class="text-center">
-                            <span>New on our platform?</span>
-                            <a href="/register">
-                                <span>Create an account</span>
-                            </a>
-                        </p>
-                        <p class="text-center">
-                            <span>( email: januar@gmail.com )</span>
-                            <span>( pass: 123456 )</span>
-                        </p>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberme"
+                                            name="rememberme" value="rememberme" />
+                                        <label class="form-check-label" for="rememberme">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary d-grid w-100">Sign in</button>
+                            </form>
+
+                            <p class="text-center">
+                                <span>New on our platform?</span>
+                                <a href="/register">
+                                    <span>Create an account</span>
+                                </a>
+                            </p>
+                        </div>
                     </div>
+                    <!-- Register Card -->
                 </div>
-                <!-- Register Card -->
             </div>
         </div>
-    </div>
 
-    <!-- / Content -->
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+        <!-- / Content -->
 
-    <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
-    <!-- endbuild -->
+        <!-- / Content -->
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="{{ asset('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/libs/popper/popper.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-    <!-- Vendors JS -->
+        <script src="{{ asset('admin/assets/vendor/js/menu.js') }}"></script>
+        <!-- endbuild -->
 
-    <!-- Main JS -->
-    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+        <!-- Vendors JS -->
+
+        <!-- Main JS -->
+        <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
 
 </body>
