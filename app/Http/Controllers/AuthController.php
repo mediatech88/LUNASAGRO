@@ -16,7 +16,9 @@ class AuthController extends Controller
             return redirect ('/dashboard');
         }
 
-        return redirect ('/user/auth');
+        return back()->withErrors([
+            'email' => 'Email dan password tidak cocok!',
+        ]);
     }
 
     public function logout (){

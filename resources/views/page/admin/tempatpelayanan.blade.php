@@ -18,7 +18,7 @@
     </div> --}}
     <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Data User /</span> Tempat Pelayanan</h4>
 
-    <div class="row">
+    <div class="row" id="load">
         <div class="col-md-12">
             <div class="demo-inline-spacing mb-3">
                 <a href="{{ url()->current() . '/create' }}" class="btn btn rounded-pill btn-success"
@@ -62,71 +62,91 @@
                                             25
                                         </td>
                                         <td>
-                                            {{-- <form action="/tempat-pelayanan" method="post">
-                                                <button type="button" class="btn rounded-pill btn-icon btn-danger"
-                                                    data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                                    data-bs-html="true" title="" data-bs-original-title="Hapus Data">
-                                                    <span class="tf-icons bx bx bx-trash"></span>
-                                                </button>
-                                                <a href="{{ url()->current() . '/' . $data->user_id . '/edit' }}"
-                                                    role="button" class="btn rounded-pill btn-icon btn-primary"
-                                                    data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                                    data-bs-html="true" title="" data-bs-original-title="Edit Data">
-                                                    <span class="tf-icons bx bx bx-edit"></span>
-                                                </a> --}}
-
-                                            <button href="#" role="button"
-                                                class="btn rounded-pill btn-icon btn-primary d-inline"
+                                            <button type="button" class="btn rounded-pill btn-icon btn-primary"
                                                 data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
                                                 data-bs-html="true" title="" data-bs-original-title="Edit Data">
                                                 <span class="tf-icons bx bx bx-edit"></span>
                                             </button>
-                                            @if ($data->code !== 'ADM001')
-                                                @if (auth()->user()->id !== $data->id)
-                                                    <form action="/tempat-pelayanan/{{ $data->id }}" method="post"
-                                                        class="d-inline">
-                                                        @method('delete') @csrf
-                                                        <button type="submit" class="btn rounded-pill btn-icon btn-danger"
-                                                            data-toggle="modal" data-target="#GSCCModal"
-                                                            data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                                            data-bs-placement="bottom" data-bs-html="true" title=""
-                                                            data-bs-original-title="Hapus Data">
-                                                            <span class="tf-icons bx bx bx-trash"></span>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            @endif
-
-
+                                            <form action="/tempat-pelayanan/{{ $data->user_id }}" method="post"
+                                                class="d-inline">
+                                                @method('delete') @csrf
+                                                <button type="submit"
+                                                    onclick="return confirm('Yakin ingin menghapus {{ $data->name }}?')"
+                                                    class="btn rounded-pill btn-icon btn-danger" data-toggle="modal"
+                                                    data-target="#GSCCModal" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                    data-bs-placement="bottom" data-bs-html="true" title=""
+                                                    data-bs-original-title="Hapus Data">
+                                                    <span class="tf-icons bx bx bx-trash" confirm></span>
+                                                </button>
+                                            </form>
                                         </td>
 
                                     </tr>
                                 @endforeach
                         </table>
-                        <!-- Modal -->
-                        <div class="modal fade" id="GSCCModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+
+{{-- @section('script')
+    <script>
+        $('.delete').click(function() {
+
+            var userid = $(this).attr('data-id');
+            let $form = $(this).closest('form');
+            var username = $(this).attr('data-name');
+
+            Swal.fire({
+                title: 'Yakin?',
+                text: "Kamu Ingin Menghapus " + username + "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#696cff',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus Data!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/tempat-pelayanan/{id}"
+                    Swal.fire(
+                        'Berhasil!',
+                        'Datamu Berhasil dihapus.',
+                        'Berhasil'
+                    )
+                } else {
+                    Swal.fire(
+                        'Gagal!',
+                        'Data tidak jadi di hapus', )
+                }
+            });
+
+        });
+        // $('.delete').click((function) {
+
+        //     alert('hallo');
+        //     // Swal.fire({
+        //     //     title: 'Yakin?',
+        //     //     text: "Kamu Ingin Menghapus ",
+        //     //     icon: 'warning',
+        //     //     showCancelButton: true,
+        //     //     confirmButtonColor: '#696cff',
+        //     //     cancelButtonColor: '#d33',
+        //     //     confirmButtonText: 'Ya, Hapus Data!'
+        //     // }).then((result) => {
+        //     //     if (result.isConfirmed) {
+        //     //         Swal.fire(
+        //     //             'Berhasil!',
+        //     //             'Datamu Berhasil dihapus.',
+        //     //             'Berhasil'
+        //     //         )
+        //     //     }
+        //     // });
+
+        // })
+    </script>
+
+
+@endsection --}}

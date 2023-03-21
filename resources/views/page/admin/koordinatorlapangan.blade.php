@@ -69,10 +69,12 @@
                                             <form action="/koordinator-lapangan/{{ $data->user_id }}" method="post"
                                                 class="d-inline">
                                                 @method('delete') @csrf
-                                                <button type="submit" class="btn rounded-pill btn-icon btn-danger"
-                                                    data-toggle="modal" data-target="#GSCCModal" data-bs-toggle="tooltip"
-                                                    data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
-                                                    title="" data-bs-original-title="Hapus Data">
+                                                <button type="submit"
+                                                    onclick="return confirm('Yakin ingin menghapus {{ $data->name }}?')"
+                                                    class="btn rounded-pill btn-icon btn-danger" data-toggle="modal"
+                                                    data-target="#GSCCModal" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                    data-bs-placement="bottom" data-bs-html="true" title=""
+                                                    data-bs-original-title="Hapus Data">
                                                     <span class="tf-icons bx bx bx-trash"></span>
                                                 </button>
                                             </form>

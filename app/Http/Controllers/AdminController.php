@@ -26,7 +26,7 @@ class AdminController extends Controller
         ->join('admin','users.id','=','admin.user_id')
         ->select()
         ->get();
-        return view('page.admin.tempatpelayanan',['users'=>$users]);
+        return view('page.admin.superuser',['users'=>$users]);
     }
 
     // /**

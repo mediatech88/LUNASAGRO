@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Korlap;
 use App\Models\Pelayanan;
 use Illuminate\Http\Request;
@@ -53,7 +54,12 @@ class KorlapController extends Controller
         $role=auth()->user()->role;
         $id= auth()->user()->id;
 
-        if ($role==1||2){
+        // return Pelayanan::get()->where('id',$id);
+
+        if ($role==1){
+            $reff=Admin::where('id',$id)->first()->code;
+        }
+        if ($role==2){
             $reff=Pelayanan::where('id',$id)->first()->code;
         }
         if ($role==3){

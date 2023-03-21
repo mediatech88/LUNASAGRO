@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'), // password
             'remember_token' => Str::random(10),
-            'reff' => 'ADM000'
+            'reff' => 'SUPERUSER'
         ]);
 
         Admin::create([

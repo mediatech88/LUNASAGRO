@@ -52,13 +52,13 @@ class PelayananController extends Controller
         $role=auth()->user()->role;
         $id= auth()->user()->id;
         //Admin
-        if($role=1){
+        if ($role==1){
             $reff=Admin::where('id',$id)->first()->code;
         }
-        //Pelayanan
-        if($role=2){
-            $reff=Admin::where('id',$id)->first()->code;
+        if ($role==2){
+            $reff=Pelayanan::where('id',$id)->first()->code;
         }
+
         $id_tp =str_pad($jml_tp, 3, '0', STR_PAD_LEFT);
 
         return view('page.add_pelayanan', [

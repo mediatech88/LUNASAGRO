@@ -83,7 +83,7 @@
                                             </button>
                                             @if ($data->code !== 'ADM001')
                                                 @if (auth()->user()->id !== $data->id)
-                                                    <form action="/tempat-pelayanan/{{ $data->id }}" method="post"
+                                                    <form action="/superuser/{{ $data->id }}" method="post"
                                                         class="d-inline">
                                                         @method('delete') @csrf
                                                         <button type="submit" class="btn rounded-pill btn-icon btn-danger"

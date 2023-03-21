@@ -116,6 +116,10 @@
                                     <span>Create an account</span>
                                 </a>
                             </p>
+                            <p class="text-center">
+                                <span>email : januar@gmail.com</span><br>
+                                <span>password : 123456</span>
+                            </p>
                         </div>
                     </div>
                     <!-- Register Card -->
