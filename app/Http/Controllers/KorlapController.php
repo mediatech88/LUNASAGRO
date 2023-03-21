@@ -54,16 +54,16 @@ class KorlapController extends Controller
         $role=auth()->user()->role;
         $id= auth()->user()->id;
 
-        // return Pelayanan::get()->where('id',$id);
+        // return "id :".$id."<br>"."role :".$role  ;
 
-        if ($role==1){
-            $reff=Admin::where('id',$id)->first()->code;
+        if ($role===1){
+            $reff=Admin::where('user_id',$id)->first()->code;
         }
-        if ($role==2){
-            $reff=Pelayanan::where('id',$id)->first()->code;
+        else if ($role===2){
+            $reff=Pelayanan::where('user_id',$id)->first()->code;
         }
-        if ($role==3){
-            $reff=Korlap::where('id',$id)->first()->code;
+        if ($role===3){
+            $reff=Korlap::where('user_id',$id)->first()->code;
         }
 
         // $reff=Korlap::get();
