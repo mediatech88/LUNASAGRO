@@ -39,7 +39,7 @@
                                 <div class="input-group input-group-merge">
                                     <button type="button" disabled class="btn btn-primary">TP</button>
                                     <input name="code" id="code" type="text"
-                                        class="form-control @error('code')
+                                        class="px-1 form-control @error('code')
                                     is-invalid
                                 @enderror""
                                         required id="basic-icon-default-fullname" value="{{ $id_tp }}">

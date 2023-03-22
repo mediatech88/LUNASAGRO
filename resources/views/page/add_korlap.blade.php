@@ -35,18 +35,19 @@
                                     required id="basic-icon-default-fullname"
                                     readonly value="{{ $reff }}">
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="code">ID</label>
-                                <div class="input-group input-group-merge">
-                                    <input name="code" id="code" type="text"
-                                        class="form-control @error('code')
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="code">ID</label>
+                            <div class="input-group input-group-merge">
+                                <input name="code" id="code" type="text"
+                                    class="form-control @error('code')
                                     is-invalid
                                 @enderror"
-                                        required id="basic-icon-default-fullname" readonly value="{{ $korlap_id }}">
-                                </div>
+                                    required id="basic-icon-default-fullname" readonly value="{{ $korlap_id }}">
                             </div>
-
                         </div>
+
+
                         <div class="mb-3">
                             <label class="form-label" for="id">Nama</label>
                             <div class="input-group input-group-merge">
@@ -55,16 +56,22 @@
                                     id="basic-icon-default-fullname" value="{{ old('name') }}">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="name">Nama Tempat Pelayanan</label>
-                            <select class="form-select" name="pelayanan_id" id="pelayanan_id" required>
-                                <option value="">Pilih Pelayanan</option>
-                                @foreach ($admin_id as $data)
-                                    <option value="{{ $data->code }}">{{ $data->code }} - {{ $data->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        @if (auth()->user()->role === 1)
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Nama Tempat Pelayanan</label>
+                                <select class="form-select" name="pelayanan_id" id="pelayanan_id" required>
+                                    <option value="">Pilih Pelayanan</option>
 
+                                    @foreach ($admin_id as $data)
+                                        <option value="{{ $data->code }}">{{ $data->code }} - {{ $data->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @else
+                            <input name="pelayanan_id" id="pelayanan_id" type="text" class="form-control" required
+                                id="basic-icon-default-fullname" hidden value="{{ $reff }}">
+                        @endif
                         <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-email">Email</label>
                             <div class="input-group input-group-merge">

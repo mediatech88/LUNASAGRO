@@ -20,19 +20,13 @@ class PelayananController extends Controller
      */
     public function index()
     {
-        // $prov= 34;
-        // $kota= 3471;
-        // $response = Http::get('https://mediatech88.github.io/api-wilayah-indonesia/api/regencies/'.$prov.'.json');
-        // $data = $response->json();
-        // foreach ($data as $key) {
-        //     return $key;
-        // }
 
         $users=DB::table('users')
         ->join('pelayanan','users.id','=','pelayanan.user_id')
         ->select()
         ->get();
         return view('page.admin.tempatpelayanan',['users'=>$users]);
+
     }
 
     /**

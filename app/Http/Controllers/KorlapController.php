@@ -20,19 +20,14 @@ class KorlapController extends Controller
      */
     public function index()
     {
-        // $prov= 34;
-        // $kota= 3471;
-        // $response = Http::get('https://mediatech88.github.io/api-wilayah-indonesia/api/regencies/'.$prov.'.json');
-        // $data = $response->json();
-        // foreach ($data as $key) {
-        //     return $key;
-        // }
 
         $users=DB::table('users')
         ->join('korlap','users.id','=','korlap.user_id')
         ->select()
         ->get();
         return view('page.admin.koordinatorlapangan',['users'=>$users]);
+
+        // return $users;
     }
 
 
@@ -89,6 +84,8 @@ class KorlapController extends Controller
     public function store(Request $request)
     {
         // return $request;
+
+        $role=auth()->user()->role;
         $validatedData = $request->validate([
             'name' => ['required','max:255'],
             'email' => ['required','email:rfc','unique:users'],
@@ -107,15 +104,26 @@ class KorlapController extends Controller
         ]);
         // return request()->all();
         if ($validatedData==true) {
-            $user = User::create([
-                'name'=>$request->name,
-                'password'=> bcrypt('123456'),
-                'role'=> 3,
-                'email'=> $request->email,
-                'phone'=> $request->phone,
-                'reff'=> $request->reff
-            ]);
 
+            if ($role===1){
+                $user = User::create([
+                    'name'=>$request->name,
+                    'password'=> bcrypt('123456'),
+                    'role'=> 3,
+                    'email'=> $request->email,
+                    'phone'=> $request->phone,
+                    'reff'=> $request->pelayanan_id
+                ]);
+            }else{
+                $user = User::create([
+                    'name'=>$request->name,
+                    'password'=> bcrypt('123456'),
+                    'role'=> 3,
+                    'email'=> $request->email,
+                    'phone'=> $request->phone,
+                    'reff'=> $request->reff
+                ]);
+            }
             $pelayanan = Korlap::create([
                 'user_id'=> $user->id,
                 'pelayanan_id'=> $request->pelayanan_id,
@@ -125,6 +133,7 @@ class KorlapController extends Controller
                 'desa'=> $request->desa,
                 'code'=> $request->code.$request->pelayanan_id
             ]);
+
         }
 
         return redirect('koordinator-lapangan')->with(
