@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KorlapController;
+use App\Http\Controllers\TimahliController;
 use App\Http\Controllers\PelayananController;
 
 /*
@@ -61,10 +62,14 @@ Route::delete('/koordinator-lapangan/{id}',[KorlapController::class,'destroy']);
 
 
 //Tim Ahli
+Route::get('/tim-ahli',[TimahliController::class,'index']);
+Route::get('/tim-ahli/create',[TimahliController::class,'create']);
+Route::post('/tim-ahli',[TimahliController::class,'store']);
+Route::delete('/tim-ahli/{id}',[TimahliController::class,'destroy']);
 
-Route::get('/tim-ahli', function () {
-    return view('page.admin.timahli');
-});
+
+
+
 Route::get('/mitra-tani', function () {
     return view('page.admin.mitratani');
 });

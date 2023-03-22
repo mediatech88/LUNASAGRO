@@ -16,12 +16,14 @@ class CreateTimAhlisTable extends Migration
         Schema::create('tim_ahli', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('admin_id');
+            $table->string('pelayanan_id');
+            $table->integer('status');
             $table->bigInteger('provinsi');
             $table->bigInteger('kota');
             $table->bigInteger('kecamatan');
             $table->bigInteger('desa');
             $table->string('code')->unique();
+            $table->timestamps();
         });
     }
 

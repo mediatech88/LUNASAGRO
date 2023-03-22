@@ -12,7 +12,7 @@
                         MENU YANG BISA DI COBA
                         <ul>
                             <li>
-                                Menu Pelayanan
+                                <b><a class="text-primary">Menu Pelayanan</a></b>
                                 <ul>
                                     <li>
                                         Tambah Pelayanan
@@ -28,7 +28,7 @@
                                 </ul>
                             </li>
                             <li>
-                                Menu Korlap
+                                <b><a class="text-primary">Menu Korlap</a></b>
                                 <ul>
                                     <li>
                                         Tambah Korlap
@@ -39,7 +39,23 @@
                                         </p>
                                     </li>
                                     <li>
-                                        Hapus Pelayanan
+                                        Hapus Korlap
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b><a class="text-primary">Menu Tim Ahli</a></b>
+                                <ul>
+                                    <li>
+                                        Tambah Tim Ahli
+                                        <p>
+                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, setelah berhasil di
+                                            tambahkan, silahkan untuk mencoba login menggunakan email yang telah kamu
+                                            tambahkan untuk passwordnya ter setdefault (123456)
+                                        </p>
+                                    </li>
+                                    <li>
+                                        Hapus Tim Ahli
                                     </li>
                                 </ul>
                             </li>
