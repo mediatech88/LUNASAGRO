@@ -43,7 +43,13 @@ class MitrataniController extends Controller
         ->get();
 
         // $jml_mitratani=MitraTani::count('id')+1;
-        $jml_mitratani=MitraTani::latest('id')->first()+1;
+
+        $jml_mitratani=MitraTani::count('id');
+        if($jml_mitratani==0){
+            $jml_mitratani++;
+        }else{
+            $jml_mitratani=MitraTani::all()->last()->id;
+        }
 
 
         $role=auth()->user()->role;
