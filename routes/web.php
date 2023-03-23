@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KorlapController;
 use App\Http\Controllers\TimahliController;
+use App\Http\Controllers\MitrataniController;
 use App\Http\Controllers\PelayananController;
+use App\Http\Controllers\ApiMitrataniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,6 @@ Route::get('/tempat-pelayanan/{id}/edit',[PelayananController::class,'edit']);
 
 
 //Korlap
-
 Route::get('/koordinator-lapangan',[KorlapController::class,'index']);
 Route::get('/koordinator-lapangan/create',[KorlapController::class,'create']);
 Route::post('/koordinator-lapangan',[KorlapController::class,'store']);
@@ -69,10 +70,17 @@ Route::delete('/tim-ahli/{id}',[TimahliController::class,'destroy']);
 
 
 
+//Mitra Tani
+Route::get('/mitra-tani',[MitrataniController::class,'index']);
+Route::get('/mitra-tani/create',[MitrataniController::class,'create']);
+Route::post('/mitra-tani',[MitrataniController::class,'store']);
+Route::delete('/mitra-tani/{id}',[MitrataniController::class,'destroy']);
 
-Route::get('/mitra-tani', function () {
-    return view('page.admin.mitratani');
-});
+//API MITRATANI
+Route::get('/mitra-tani/getkorlap/{code}',[ApiMitrataniController::class,'getkorlap']);
+
+
+
 Route::get('/pemupukan', function () {
     return view('page.admin.pemupukan');
 });

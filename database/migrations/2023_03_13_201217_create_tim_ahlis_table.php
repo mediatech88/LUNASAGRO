@@ -15,7 +15,7 @@ class CreateTimAhlisTable extends Migration
     {
         Schema::create('tim_ahli', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('pelayanan_id');
             $table->integer('status');
             $table->bigInteger('provinsi');

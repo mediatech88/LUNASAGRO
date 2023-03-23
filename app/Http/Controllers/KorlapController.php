@@ -91,6 +91,7 @@ class KorlapController extends Controller
             'email' => ['required','email:rfc','unique:users'],
             'phone' => ['required','min:999999','max:9999999999999','numeric'],
             'reff' => ['required'],
+
             'provinsi'=> ['required'],
             'kota'=> ['required'],
             'kec'=> ['required'],

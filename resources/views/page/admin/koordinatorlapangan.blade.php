@@ -23,10 +23,6 @@
                     data-bs-html="true" title="" data-bs-original-title="Tambah Data"><span
                         class="tf-icons bx bx bx-plus"></span>Tambah
                     Data</a>
-                {{-- <button type="button" class="btn rounded-pill btn-success" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                    data-bs-placement="bottom" data-bs-html="true" title="" data-bs-original-title="Tambah Data"><span
-                        class="tf-icons bx bx bx-plus"></span>Tambah
-                    Data</button> --}}
                 <button type="button" class="btn rounded-pill btn-outline-warning" data-bs-toggle="tooltip"
                     data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" title=""
                     data-bs-original-title="Export Data"><span class="tf-icons bx bx bx-export"></span></button>

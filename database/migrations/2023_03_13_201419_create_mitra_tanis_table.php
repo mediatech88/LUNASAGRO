@@ -15,8 +15,10 @@ class CreateMitraTanisTable extends Migration
     {
         Schema::create('mitra_tani', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('korlap_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('admin_id');
+            $table->string('korlap_id');
+            $table->integer('status');
             $table->bigInteger('provinsi');
             $table->bigInteger('kota');
             $table->bigInteger('kecamatan');
@@ -26,6 +28,7 @@ class CreateMitraTanisTable extends Migration
             $table->string('elevasi');
             $table->string('luas_lahan');
             $table->string('code')->unique();
+            $table->timestamps();
         });
     }
 

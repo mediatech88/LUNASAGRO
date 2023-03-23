@@ -59,9 +59,30 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <b><a class="text-primary">Menu Mitra Tani</a></b>
+                                <ul>
+                                    <li>
+                                        Tambah Mitra Tani
+                                        <p>
+                                            Silahkan Mengisi Form , dan Coba Form dengan Baik, setelah berhasil di
+                                            tambahkan, silahkan untuk mencoba login menggunakan email yang telah kamu
+                                            tambahkan untuk passwordnya ter setdefault (123456).
+
+                                        </p>
+                                    </li>
+                                    <li>
+                                        Hapus Mitra Tani
+                                    </li>
+                                </ul>
+                            </li>
+
                         </ul>
 
                     </div>
+                    <p class="text-danger">
+                        jika menemukan error silahkan dilaporkan kekami agar bisa lebih kami perbaiki
+                    </p>
                 </div>
             </div>
         </div>

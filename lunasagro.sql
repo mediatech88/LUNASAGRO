@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 17 Mar 2023 pada 23.51
+-- Waktu pembuatan: 23 Mar 2023 pada 04.28
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `user_id`, `provinsi`, `kota`, `kecamatan`, `desa`, `code`, `created_at`, `updated_at`) VALUES
-(1, 1, 35, 3551, 3551, 3551, 'ADM001', '2023-03-17 16:16:40', '2023-03-17 16:16:40');
+(1, 1, 35, 3551, 3551, 3551, 'ADM001', '2023-03-22 21:22:39', '2023-03-22 21:22:39');
 
 -- --------------------------------------------------------
 
@@ -181,13 +181,6 @@ CREATE TABLE `korlap` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `korlap`
---
-
-INSERT INTO `korlap` (`id`, `user_id`, `pelayanan_id`, `provinsi`, `kota`, `kecamatan`, `desa`, `code`, `created_at`, `updated_at`) VALUES
-(1, 3, 'TP001', 35, 3517, 3517140, 3517140011, 'KL001TP001', '2023-03-17 16:25:07', '2023-03-17 16:25:07');
-
 -- --------------------------------------------------------
 
 --
@@ -232,7 +225,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `mitra_tani` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `korlap_id` bigint UNSIGNED NOT NULL,
+  `admin_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `korlap_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int NOT NULL,
   `provinsi` bigint NOT NULL,
   `kota` bigint NOT NULL,
   `kecamatan` bigint NOT NULL,
@@ -241,7 +236,9 @@ CREATE TABLE `mitra_tani` (
   `koordinat_long` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `elevasi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `luas_lahan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -274,13 +271,6 @@ CREATE TABLE `pelayanan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `pelayanan`
---
-
-INSERT INTO `pelayanan` (`id`, `user_id`, `provinsi`, `kota`, `kecamatan`, `desa`, `code`, `created_at`, `updated_at`) VALUES
-(1, 2, 36, 3602, 3602090, 3602090010, 'TP001', '2023-03-17 16:24:02', '2023-03-17 16:24:02');
-
 -- --------------------------------------------------------
 
 --
@@ -308,12 +298,15 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `tim_ahli` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `admin_id` bigint UNSIGNED NOT NULL,
+  `pelayanan_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int NOT NULL,
   `provinsi` bigint NOT NULL,
   `kota` bigint NOT NULL,
   `kecamatan` bigint NOT NULL,
   `desa` bigint NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -341,9 +334,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `role`, `password`, `reff`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'januar', 'januar@gmail.com', '082116162688', 1, '$2y$10$cm4Lt0Jtl03Hc8hyjOk3jOBESMsIqPTuzfSmcyGjkHQ7PHHgc4zei', 'ADM000', '2023-03-17 16:16:39', 'zCrYHF7IZOSQpuWxeCcJvcAiwARTtQgqdTO4sZoFhhLKF7fsTkZh6sRFwGa5', '2023-03-17 16:16:40', '2023-03-17 16:16:40'),
-(2, 'BPR Buduran Deltapurnama', 'julaikha@gmail.com', '082116162688', 2, '$2y$10$t0oLRS6OYFjNJLdSa1pfjuO8fEw7oVqatYTiybhourcyl/H6bgq26', 'ADM001', NULL, NULL, '2023-03-17 16:24:01', '2023-03-17 16:24:01'),
-(3, 'BPR Buduran Deltapurnama', 'bpr.buduran.delta.purnama@gmail.com', '082116162688', 3, '$2y$10$eSiLFgeXglgxAYyw6tRog.kmJYj7RB5Z.dz2olRBy0yi5p1IMAu/2', 'TP001', NULL, NULL, '2023-03-17 16:25:06', '2023-03-17 16:25:06');
+(1, 'januar', 'januar@gmail.com', '082116162688', 1, '$2y$10$7PsQyNtfvFNTgpvbtEbeL.UTlhMqwuzjhc.h0OPzXLnGqdxrY7XVi', 'SUPERUSER', '2023-03-22 21:22:38', '4L4KKj2sIe', '2023-03-22 21:22:39', '2023-03-22 21:22:39');
 
 -- --------------------------------------------------------
 
@@ -436,7 +427,8 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `mitra_tani`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `mitra_tani_code_unique` (`code`);
+  ADD UNIQUE KEY `mitra_tani_code_unique` (`code`),
+  ADD KEY `mitra_tani_user_id_foreign` (`user_id`);
 
 --
 -- Indeks untuk tabel `password_resets`
@@ -465,7 +457,8 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `tim_ahli`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `tim_ahli_code_unique` (`code`);
+  ADD UNIQUE KEY `tim_ahli_code_unique` (`code`),
+  ADD KEY `tim_ahli_user_id_foreign` (`user_id`);
 
 --
 -- Indeks untuk tabel `users`
@@ -542,7 +535,7 @@ ALTER TABLE `kontrol_korlap`
 -- AUTO_INCREMENT untuk tabel `korlap`
 --
 ALTER TABLE `korlap`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -560,7 +553,7 @@ ALTER TABLE `mitra_tani`
 -- AUTO_INCREMENT untuk tabel `pelayanan`
 --
 ALTER TABLE `pelayanan`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -578,7 +571,7 @@ ALTER TABLE `tim_ahli`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `varietas`
@@ -603,10 +596,22 @@ ALTER TABLE `korlap`
   ADD CONSTRAINT `korlap_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Ketidakleluasaan untuk tabel `mitra_tani`
+--
+ALTER TABLE `mitra_tani`
+  ADD CONSTRAINT `mitra_tani_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Ketidakleluasaan untuk tabel `pelayanan`
 --
 ALTER TABLE `pelayanan`
   ADD CONSTRAINT `pelayanan_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tim_ahli`
+--
+ALTER TABLE `tim_ahli`
+  ADD CONSTRAINT `tim_ahli_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

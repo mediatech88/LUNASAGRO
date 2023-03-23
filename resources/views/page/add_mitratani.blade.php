@@ -1,0 +1,342 @@
+{{-- {{ dd($mitratani_id) }} --}}
+
+
+@extends('layouts.master')
+@section('title', 'Tambah Koordinator Lapangan')
+@section('content')
+    {{-- <div class="card text-center mb-3">
+        <div class="card-body">
+
+        </div>
+    </div> --}}
+    <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Data User / Tempat Pelayanan /</span> Create</h4>
+
+    <div class="row">
+        <div class="col-md-8">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @endif
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Tambah Data Tempat Pelayanan</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/mitra-tani">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" for="id">Refferal</label>
+                            <div class="input-group input-group-merge">
+                                <input name="reff" id="reff" type="text"
+                                    class="form-control
+                                    required id="basic-icon-default-fullname"
+                                    readonly value="{{ $reff }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="code">ID</label>
+                            <div class="input-group input-group-merge">
+                                <input name="code" id="code" type="text"
+                                    class="form-control @error('code')
+                                    is-invalid
+                                @enderror"
+                                    required id="basic-icon-default-fullname" readonly value="{{ $mitratani_id }}">
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="id">Nama</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-user"></i></span>
+                                <input name="name" id="name" type="text" class="form-control" required
+                                    id="basic-icon-default-fullname" value="{{ old('name') }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="koor_lat">Koordinat Latitude</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i>Lat</i></span>
+                                <input name="koor_lat" id="koor_lat" type="text" class="form-control" required
+                                    id="basic-icon-default-fullname" value="{{ old('koor_lat') }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="koor_long">Koordinat Longitude</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i>Long</i></span>
+                                <input name="koor_long" id="koor_long" type="text" class="form-control" required
+                                    id="basic-icon-default-fullname" value="{{ old('koor_long') }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="elevasi">Elevasi</label>
+                            <div class="input-group input-group-merge">
+                                <input name="elevasi" id="elevasi" type="text" class="form-control" required
+                                    id="basic-icon-default-fullname" value="{{ old('elevasi') }}">
+                                <span class="input-group-text"><i><b>Mdpl</b></i></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="luaslahan">Luas lahan</label>
+                            <div class="input-group input-group-merge">
+                                <input name="luaslahan" id="luaslahan" type="text" class="form-control" required
+                                    id="basic-icon-default-fullname" value="{{ old('luaslahan') }}">
+                                <span class="input-group-text"><i><b>M<sup>2</sup></b></i></span>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-email">Email</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                <input type="email" name="email" id="email"
+                                    class="form-control @error('email')
+                                    is-invalid
+                                @enderror"
+                                    placeholder="Alamat Email" aria-label="john.doe" required value="{{ old('email') }}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-phone">Phone</label>
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                        class="bx bx-phone"></i></span>
+                                <input name="phone" minlenght="8" id="phone" type="tel"
+                                    id="basic-icon-default-phone"
+                                    class="form-control @error('phone')
+                                    is-invalid
+                                @enderror
+                                    phone-mask"
+                                    placeholder="628XXXXXXXX" required value="{{ old('phone') }}">
+                            </div>
+                        </div>
+                        @if (auth()->user()->role === 1)
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Nama Tempat Pelayanan</label>
+                                <select class="form-select" name="pelayanan_id" id="pelayanan_id" required>
+                                    <option value="">Pilih Pelayanan</option>
+
+                                    @foreach ($admin_id as $data)
+                                        <option value="{{ $data->code }}">{{ $data->code }} - {{ $data->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Nama Korlap</label>
+                                <select class="form-select" name="korlap_id" id="korlap_id" required>
+                                    <option value="">Pilih Korlap</option>
+                                </select>
+                            </div>
+                        @else
+                            <input name="pelayanan_id" id="pelayanan_id" type="text" class="form-control" required
+                                id="basic-icon-default-fullname" hidden value="{{ $reff }}">
+                        @endif
+                        <div class="mb-3">
+                            <label class="form-label">Provinsi</label>
+                            <select class="form-select" name="provinsi" id="provinsi" required>
+                                <option value="">Pilih Provinsi</option>
+                                @foreach ($alamat as $data)
+                                    <option value="{{ $data['id'] }}">{{ $data['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kota/Kab</label>
+                            <select class="form-select" name="kota" id="kota" required>
+                                <option value="">Pilih Kota / Kab</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kecamatan</label>
+                            <select class="form-select" name="kec" id="kec"
+                                aria-label="Default select example" required>
+                                <option value="">Pilih Kecamatan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Desa/Kelurahan</label>
+                            <select class="form-select" name="desa" id="desa"
+                                aria-label="Default select example" required>
+                                <option value="">Pilih Desa / Kelurahan</option>
+                            </select>
+                        </div>
+                        {{-- <div class="mb-3">
+                            <label class="form-label" for="alamat_lain">Detail Alamat</label>
+                            <div class="input-group input-group-merge">
+                                <textarea name="alamat_lain" id="alamat_lain" type="text" class="form-control" id="basic-icon-default-fullname"
+                                    rows="3"></textarea>
+                            </div>
+                        </div> --}}
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#provinsi').on('change', function() {
+                var id_provinsi = $(this).val();
+                // console.log(id_provinsi);
+                if (id_provinsi) {
+                    $.ajax({
+                        url: 'https://mediatech88.github.io/api-wilayah-indonesia/api/regencies/' +
+                            id_provinsi + '.json',
+                        type: 'GET',
+                        data: {},
+                        dataType: 'json',
+                        success: function(data) {
+                            // console.log(data);
+
+                            if (data) {
+                                $('#kota').empty();
+                                $('#kec').empty();
+                                $('#desa').empty();
+                                $('#kota').append(
+                                    '<option value=""> Pilih Kota / Kab </option>');
+                                $('#kec').append(
+                                    '<option value=""> Pilih Kecamatan </option>');
+                                $('#desa').append(
+                                    '<option value=""> Pilih Desa / Kelurahan </option>');
+                                $.each(data, function(key, kotakab) {
+                                    $('select[name="kota"]').append(
+                                        '<option value="' + kotakab.id + '">' +
+                                        kotakab.name + '</option>'
+                                    );
+
+                                });
+
+                            } else {
+                                $('#kota').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#provinsi').empty();
+                }
+
+            });
+            $('#kota').on('change', function() {
+                var id_kota = $(this).val();
+                // console.log(id_provinsi);
+                if (id_kota) {
+                    $.ajax({
+                        url: 'https://mediatech88.github.io/api-wilayah-indonesia/api/districts/' +
+                            id_kota + '.json',
+                        type: 'GET',
+                        data: {},
+                        dataType: 'json',
+                        success: function(data) {
+                            // console.log(data);
+
+                            if (data) {
+                                $('#kec').empty();
+                                $('#desa').empty();
+                                $('#kec').append(
+                                    '<option value=""> Pilih Kecamatan</option>');
+                                $('#desa').append(
+                                    '<option value=""> Pilih Desa / Kelurahan </option>');
+                                $.each(data, function(key, kecamatan) {
+                                    $('select[name="kec"]').append(
+                                        '<option value="' + kecamatan.id + '">' +
+                                        kecamatan.name + '</option>'
+                                    );
+
+                                });
+
+                            } else {
+                                $('#kec').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#kota').empty();
+                }
+
+            });
+            $('#kec').on('change', function() {
+                var id_kec = $(this).val();
+                // console.log(id_provinsi);
+                if (id_kec) {
+                    $.ajax({
+                        url: 'https://mediatech88.github.io/api-wilayah-indonesia/api/villages/' +
+                            id_kec + '.json',
+                        type: 'GET',
+                        data: {},
+                        dataType: 'json',
+                        success: function(data) {
+                            // console.log(data);
+
+                            if (data) {
+                                $('#desa').empty();
+                                $('#desa').append(
+                                    '<option value=""> Pilih Desa / Kelurahan </option>');
+                                $.each(data, function(key, desa) {
+                                    $('select[name="desa"]').append(
+                                        '<option value="' + desa.id + '">' +
+                                        desa.name + '</option>'
+                                    );
+
+                                });
+
+                            } else {
+                                $('#desa').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#kec').empty();
+                }
+
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#pelayanan_id').on('change', function() {
+                var pelayananID = $(this).val();
+                if (pelayananID) {
+                    $.ajax({
+                        url: '/mitra-tani/getkorlap/' + pelayananID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+
+                            // console.log(data);
+                            if (data) {
+                                $('#korlap_id').empty();
+                                $('#korlap_id').append(
+                                    '<option value=""> Pilih Korlap </option>');
+                                $.each(data, function(key, korlap) {
+                                    $('select[name="korlap_id"]').append(
+                                        '<option value="' + korlap.code +
+                                        '">' + korlap.code + ' - ' +
+                                        korlap.name + '</option>'
+                                    );
+
+                                });
+                            } else {
+                                $('#korlap_id').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#korlap_id').empty();
+                }
+            });
+        });
+    </script>
+@endsection
