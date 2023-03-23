@@ -42,7 +42,10 @@ class PelayananController extends Controller
 
 
         // $jml_tp=Pelayanan::count('id')+1;
-        $jml_tp=Pelayanan::latest()->first()->id;
+
+        $jml_tp=Pelayanan::latest('id')->first()+1;
+
+
 
         $role=auth()->user()->role;
         $id= auth()->user()->id;

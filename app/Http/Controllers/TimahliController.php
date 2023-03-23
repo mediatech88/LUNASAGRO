@@ -46,7 +46,8 @@ class TimahliController extends Controller
         ->get();
 
         // $jml_timahli=TimAhli::count('id')+1;
-        $jml_timahli=TimAhli::latest()->first()->id;
+        $jml_timahli=TimAhli::latest('id')->first()+1;
+
 
         $role=auth()->user()->role;
         $id= auth()->user()->id;

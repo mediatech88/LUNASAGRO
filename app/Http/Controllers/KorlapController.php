@@ -45,7 +45,8 @@ class KorlapController extends Controller
         ->select()
         ->get();
 
-        $jml_korlap=Korlap::count('id')+1;
+        $jml_korlap=Korlap::latest('id')->first()+1;
+
         $role=auth()->user()->role;
         $id= auth()->user()->id;
 
