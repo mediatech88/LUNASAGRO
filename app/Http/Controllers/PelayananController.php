@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Korlap;
+use App\Models\TimAhli;
 use App\Models\Pelayanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -162,15 +164,30 @@ class PelayananController extends Controller
      */
     public function destroy($id)
     {
-        // User::destroy($id);
-        // return redirect('tempat-pelayanan')
-        //     ->with('status','Data Berhasil di Hapus');
-        $id_login = Auth::user()->id;
 
-        // @if ($data->code !== 'ADM001')
-        //                                         @if (auth()->user()->id !== $data->id)
-        // $id_admin = 1;
-        if($id !== $id_login ){
+        $id_login = Auth::user()->id;
+        //jangan Hapus jika Pelayanan masih memiliki data korlap
+        $code_pelayanan= Pelayanan::where('user_id',$id)->first()->code;
+
+        $korlap = Korlap::where('pelayanan_id',$code_pelayanan)->count();
+
+        $timahli = TimAhli::where('pelayanan_id',$code_pelayanan)->count();
+
+        if($korlap!==0){
+            if($timahli!==0){
+                return redirect('tempat-pelayanan')
+            ->with(
+                'gagal',
+                'Gagal Menghapus! Jumlah tim ahli tidak Kosong'
+            );
+            }
+            return redirect('tempat-pelayanan')
+            ->with(
+                'gagal',
+                'Gagal Menghapus! Jumlah Korlap tidak Kosong'
+            );
+        }else{
+            if($id !== $id_login ){
                 User::destroy($id);
             return redirect('tempat-pelayanan')
                 ->with(
@@ -178,13 +195,20 @@ class PelayananController extends Controller
                     'Data Berhasil di Hapus'
                 );
 
-        }else{
-            return redirect('tempat-pelayanan')
-            ->with(
-                'status',
-                'Jangan Hapus Boss'
-            );
+                }else{
+                    return redirect('tempat-pelayanan')
+                    ->with(
+                        'status',
+                        'Jangan Hapus Boss'
+                         );}
         }
+
+
+
+        // @if ($data->code !== 'ADM001')
+        //                                         @if (auth()->user()->id !== $data->id)
+        // $id_admin = 1;
+
 
 
     }

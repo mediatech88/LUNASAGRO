@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Korlap;
+use App\Models\MitraTani;
 use App\Models\Pelayanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -151,13 +152,27 @@ class KorlapController extends Controller
 
     public function destroy($id)
     {
-            // return dd($id);
-    User::destroy($id);
-    return redirect('koordinator-lapangan')
-    ->with(
-    'status',
-    'Data Berhasil di Hapus'
-    );
+        $code_pelayanan= Korlap::where('user_id',$id)->first()->pelayanan_id;
+    // return dd($code_pelayanan);
+
+    $mitratani = MitraTani::where('admin_id',$code_pelayanan)->count();
+
+    if($mitratani!==0){
+        return redirect('mitra-tani')
+        ->with(
+            'gagal',
+            'Gagal Menghapus! Masih ada Mitra Tani'
+        );
+    }else{
+        User::destroy($id);
+        return redirect('mitra-tani')
+        ->with(
+        'status',
+        'Data Berhasil di Hapus'
+        );
+    }
+
+
     }
 
 
