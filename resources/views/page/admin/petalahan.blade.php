@@ -63,7 +63,7 @@
         const map = L.map('map', {
             center: [-7.461633, 112.675943],
             zoom: 12,
-            layers: [streets, lahan]
+            layers: [osm, lahan]
         });
 
         const baseLayers = {
